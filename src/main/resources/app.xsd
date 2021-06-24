@@ -4,6 +4,7 @@
         targetNamespace="https://rca.ac.rw/anselme/soap-app"
         xmlns:tns="https://rca.ac.rw/anselme/soap-app"
         elementFormDefault="qualified">
+
     <xs:complexType name="Student">
         <xs:sequence>
             <xs:element name="id" type="xs:long"/>

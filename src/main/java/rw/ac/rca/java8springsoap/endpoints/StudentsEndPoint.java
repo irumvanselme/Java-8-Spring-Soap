@@ -26,7 +26,7 @@ public class StudentsEndPoint {
     public NewStudentDTOResponse create(@RequestPayload NewStudentDTORequest dto) {
         jaxb.classes.Student __student = dto.getStudent();
 
-        Student _student = new Student(__student.getFirstName(), __student.getFirstName(), __student.getGender(), __student.getDateOfBirth(), __student.getResident(), __student.getParentsPhoneNumber());
+        Student _student = new Student(__student.getFirstName(), __student.getLastName(), __student.getGender(), __student.getDateOfBirth(), __student.getResident(), __student.getParentsPhoneNumber());
 
         Student student = studentRepository.save(_student);
 
@@ -41,7 +41,7 @@ public class StudentsEndPoint {
 
     @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "GetAllStudentsRequest")
     @ResponsePayload
-    public GetAllStudentsResponse findAll(){
+    public GetAllStudentsResponse findAll(@RequestPayload GetAllStudentsRequest request){
 
         List<Student> students = studentRepository.findAll();
 
@@ -89,7 +89,7 @@ public class StudentsEndPoint {
     public UpdateStudentResponse update(@RequestPayload UpdateStudentRequest request){
         jaxb.classes.Student __student = request.getStudent();
 
-        Student _student = new Student(__student.getFirstName(), __student.getFirstName(), __student.getGender(), __student.getDateOfBirth(), __student.getResident(), __student.getParentsPhoneNumber());
+        Student _student = new Student(__student.getFirstName(), __student.getLastName(), __student.getGender(), __student.getDateOfBirth(), __student.getResident(), __student.getParentsPhoneNumber());
         _student.setId(__student.getId());
 
         Student student = studentRepository.save(_student);

@@ -29,14 +29,13 @@ public class WebServiceConfig {
     }
 
     // /ws/anselme/students.wsdl
-    // course-details.xsd
     @Bean(name = "students")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema coursesSchema) {
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema studentsSchema) {
         DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
         definition.setPortTypeName("StudentPort");
         definition.setTargetNamespace("https://rca.ac.rw/anselme/soap-app");
         definition.setLocationUri("/ws/anselme");
-        definition.setSchema(coursesSchema);
+        definition.setSchema(studentsSchema);
         return definition;
     }
 
