@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="https://rca.ac.rw/anselme/soap-app"
+        xmlns:tns="https://rca.ac.rw/anselme/soap-app"
+        elementFormDefault="qualified">
+
+    <xs:complexType name="SupplierDetails">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="names" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="mobile" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Requests -->
+
+    <!-- New student -->
+    <xs:element name="NewSupplierRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Supplier" type="tns:SupplierDetails"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="NewSupplierResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Supplier" type="tns:SupplierDetails"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- Get all students -->
+    <xs:element name="GetAllSuppliersRequest">
+        <xs:complexType>
+
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetAllSuppliersResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Supplier" type="tns:SupplierDetails" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--    Get a student by id -->
+    <xs:element name="GetSupplierDetailsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetSupplierDetailsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Supplier" type="tns:SupplierDetails"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--    Update Supplier -->
+    <xs:element name="UpdateSupplierRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Supplier" type="tns:SupplierDetails"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="UpdateSupplierResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Supplier" type="tns:SupplierDetails"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--    Delete Supplier -->
+    <xs:element name="DeleteSupplierRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DeleteSupplierResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
