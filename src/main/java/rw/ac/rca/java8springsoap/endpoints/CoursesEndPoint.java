@@ -5,7 +5,7 @@ import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
-import rw.ac.rca.java8springsoap.repositories.ICourseRepository;
+import rw.ac.rca.java8springsoap.repositories.IItemRepository;
 import rw.ac.rca.java8springsoap.models.Item;
 
 import java.util.List;
@@ -13,10 +13,10 @@ import java.util.Optional;
 
 @Endpoint
 public class CoursesEndPoint {
-    private final ICourseRepository studentRepository;
+    private final IItemRepository studentRepository;
 
     @Autowired
-    public CoursesEndPoint(ICourseRepository repository) {
+    public CoursesEndPoint(IItemRepository repository) {
         this.studentRepository = repository;
     }
 
