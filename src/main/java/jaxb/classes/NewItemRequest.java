@@ -1,5 +1,5 @@
 
-package jaxb.classes.suppliers;
+package jaxb.classes;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Supplier" type="{https://rca.ac.rw/anselme/soap-app}SupplierDetails"/>
+ *         &lt;element name="Item" type="{https://rca.ac.rw/anselme/soap-app}ItemDetails"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,36 +29,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "supplier"
+    "item"
 })
-@XmlRootElement(name = "GetSupplierDetailsResponse", namespace = "https://rca.ac.rw/anselme/soap-app")
-public class GetSupplierDetailsResponse {
+@XmlRootElement(name = "NewItemRequest", namespace = "https://rca.ac.rw/anselme/soap-app")
+public class NewItemRequest {
 
-    @XmlElement(name = "Supplier", namespace = "https://rca.ac.rw/anselme/soap-app", required = true)
-    protected SupplierDetails supplier;
+    @XmlElement(name = "Item", namespace = "https://rca.ac.rw/anselme/soap-app", required = true)
+    protected ItemDetails item;
 
     /**
-     * Gets the value of the supplier property.
+     * Gets the value of the item property.
      * 
      * @return
      *     possible object is
-     *     {@link SupplierDetails }
+     *     {@link ItemDetails }
      *     
      */
-    public SupplierDetails getSupplier() {
-        return supplier;
+    public ItemDetails getItem() {
+        return item;
     }
 
     /**
-     * Sets the value of the supplier property.
+     * Sets the value of the item property.
      * 
      * @param value
      *     allowed object is
-     *     {@link SupplierDetails }
+     *     {@link ItemDetails }
      *     
      */
-    public void setSupplier(SupplierDetails value) {
-        this.supplier = value;
+    public void setItem(ItemDetails value) {
+        this.item = value;
     }
 
 }

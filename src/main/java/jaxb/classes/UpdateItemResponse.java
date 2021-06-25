@@ -1,5 +1,5 @@
 
-package jaxb.classes.items;
+package jaxb.classes;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -31,8 +31,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "item"
 })
-@XmlRootElement(name = "GetItemDetailsResponse", namespace = "https://rca.ac.rw/anselme/soap-app")
-public class GetItemDetailsResponse {
+@XmlRootElement(name = "UpdateItemResponse", namespace = "https://rca.ac.rw/anselme/soap-app")
+public class UpdateItemResponse {
 
     @XmlElement(name = "Item", namespace = "https://rca.ac.rw/anselme/soap-app", required = true)
     protected ItemDetails item;

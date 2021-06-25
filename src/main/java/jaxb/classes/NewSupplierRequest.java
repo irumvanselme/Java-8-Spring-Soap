@@ -1,5 +1,5 @@
 
-package jaxb.classes.suppliers;
+package jaxb.classes;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="message" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="Supplier" type="{https://rca.ac.rw/anselme/soap-app}SupplierDetails"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,36 +29,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "message"
+    "supplier"
 })
-@XmlRootElement(name = "DeleteSupplierResponse", namespace = "https://rca.ac.rw/anselme/soap-app")
-public class DeleteSupplierResponse {
+@XmlRootElement(name = "NewSupplierRequest", namespace = "https://rca.ac.rw/anselme/soap-app")
+public class NewSupplierRequest {
 
-    @XmlElement(namespace = "https://rca.ac.rw/anselme/soap-app", required = true)
-    protected String message;
+    @XmlElement(name = "Supplier", namespace = "https://rca.ac.rw/anselme/soap-app", required = true)
+    protected SupplierDetails supplier;
 
     /**
-     * Gets the value of the message property.
+     * Gets the value of the supplier property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link SupplierDetails }
      *     
      */
-    public String getMessage() {
-        return message;
+    public SupplierDetails getSupplier() {
+        return supplier;
     }
 
     /**
-     * Sets the value of the message property.
+     * Sets the value of the supplier property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link SupplierDetails }
      *     
      */
-    public void setMessage(String value) {
-        this.message = value;
+    public void setSupplier(SupplierDetails value) {
+        this.supplier = value;
     }
 
 }

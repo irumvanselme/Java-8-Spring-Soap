@@ -1,5 +1,5 @@
 
-package jaxb.classes.suppliers;
+package jaxb.classes;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="message" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,28 +29,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "id"
+    "message"
 })
-@XmlRootElement(name = "DeleteSupplierRequest", namespace = "https://rca.ac.rw/anselme/soap-app")
-public class DeleteSupplierRequest {
+@XmlRootElement(name = "DeleteSupplierResponse", namespace = "https://rca.ac.rw/anselme/soap-app")
+public class DeleteSupplierResponse {
 
-    @XmlElement(namespace = "https://rca.ac.rw/anselme/soap-app")
-    protected long id;
+    @XmlElement(namespace = "https://rca.ac.rw/anselme/soap-app", required = true)
+    protected String message;
 
     /**
-     * Gets the value of the id property.
+     * Gets the value of the message property.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public long getId() {
-        return id;
+    public String getMessage() {
+        return message;
     }
 
     /**
-     * Sets the value of the id property.
+     * Sets the value of the message property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setId(long value) {
-        this.id = value;
+    public void setMessage(String value) {
+        this.message = value;
     }
 
 }

@@ -1,5 +1,5 @@
 
-package jaxb.classes.items;
+package jaxb.classes;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Item" type="{https://rca.ac.rw/anselme/soap-app}ItemDetails"/>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,36 +29,28 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "item"
+    "id"
 })
-@XmlRootElement(name = "NewItemRequest", namespace = "https://rca.ac.rw/anselme/soap-app")
-public class NewItemRequest {
+@XmlRootElement(name = "GetItemDetailsRequest", namespace = "https://rca.ac.rw/anselme/soap-app")
+public class GetItemDetailsRequest {
 
-    @XmlElement(name = "Item", namespace = "https://rca.ac.rw/anselme/soap-app", required = true)
-    protected ItemDetails item;
+    @XmlElement(namespace = "https://rca.ac.rw/anselme/soap-app")
+    protected long id;
 
     /**
-     * Gets the value of the item property.
+     * Gets the value of the id property.
      * 
-     * @return
-     *     possible object is
-     *     {@link ItemDetails }
-     *     
      */
-    public ItemDetails getItem() {
-        return item;
+    public long getId() {
+        return id;
     }
 
     /**
-     * Sets the value of the item property.
+     * Sets the value of the id property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link ItemDetails }
-     *     
      */
-    public void setItem(ItemDetails value) {
-        this.item = value;
+    public void setId(long value) {
+        this.id = value;
     }
 
 }

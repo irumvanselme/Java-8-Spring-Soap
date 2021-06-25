@@ -1,5 +1,5 @@
 package rw.ac.rca.java8springsoap.endpoints;
-import jaxb.classes.suppliers.*;
+import jaxb.classes.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;

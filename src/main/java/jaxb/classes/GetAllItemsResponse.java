@@ -1,5 +1,5 @@
 
-package jaxb.classes.suppliers;
+package jaxb.classes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Supplier" type="{https://rca.ac.rw/anselme/soap-app}SupplierDetails" maxOccurs="unbounded"/>
+ *         &lt;element name="Item" type="{https://rca.ac.rw/anselme/soap-app}ItemDetails" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,41 +31,41 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "supplier"
+    "item"
 })
-@XmlRootElement(name = "GetAllSuppliersResponse", namespace = "https://rca.ac.rw/anselme/soap-app")
-public class GetAllSuppliersResponse {
+@XmlRootElement(name = "GetAllItemsResponse", namespace = "https://rca.ac.rw/anselme/soap-app")
+public class GetAllItemsResponse {
 
-    @XmlElement(name = "Supplier", namespace = "https://rca.ac.rw/anselme/soap-app", required = true)
-    protected List<SupplierDetails> supplier;
+    @XmlElement(name = "Item", namespace = "https://rca.ac.rw/anselme/soap-app", required = true)
+    protected List<ItemDetails> item;
 
     /**
-     * Gets the value of the supplier property.
+     * Gets the value of the item property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the supplier property.
+     * This is why there is not a <CODE>set</CODE> method for the item property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getSupplier().add(newItem);
+     *    getItem().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link SupplierDetails }
+     * {@link ItemDetails }
      * 
      * 
      */
-    public List<SupplierDetails> getSupplier() {
-        if (supplier == null) {
-            supplier = new ArrayList<SupplierDetails>();
+    public List<ItemDetails> getItem() {
+        if (item == null) {
+            item = new ArrayList<ItemDetails>();
         }
-        return this.supplier;
+        return this.item;
     }
 
 }

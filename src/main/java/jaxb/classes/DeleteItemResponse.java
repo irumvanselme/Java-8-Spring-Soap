@@ -1,5 +1,5 @@
 
-package jaxb.classes.items;
+package jaxb.classes;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Item" type="{https://rca.ac.rw/anselme/soap-app}ItemDetails"/>
+ *         &lt;element name="message" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,36 +29,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "item"
+    "message"
 })
-@XmlRootElement(name = "UpdateItemResponse", namespace = "https://rca.ac.rw/anselme/soap-app")
-public class UpdateItemResponse {
+@XmlRootElement(name = "DeleteItemResponse", namespace = "https://rca.ac.rw/anselme/soap-app")
+public class DeleteItemResponse {
 
-    @XmlElement(name = "Item", namespace = "https://rca.ac.rw/anselme/soap-app", required = true)
-    protected ItemDetails item;
+    @XmlElement(namespace = "https://rca.ac.rw/anselme/soap-app", required = true)
+    protected String message;
 
     /**
-     * Gets the value of the item property.
+     * Gets the value of the message property.
      * 
      * @return
      *     possible object is
-     *     {@link ItemDetails }
+     *     {@link String }
      *     
      */
-    public ItemDetails getItem() {
-        return item;
+    public String getMessage() {
+        return message;
     }
 
     /**
-     * Sets the value of the item property.
+     * Sets the value of the message property.
      * 
      * @param value
      *     allowed object is
-     *     {@link ItemDetails }
+     *     {@link String }
      *     
      */
-    public void setItem(ItemDetails value) {
-        this.item = value;
+    public void setMessage(String value) {
+        this.message = value;
     }
 
 }

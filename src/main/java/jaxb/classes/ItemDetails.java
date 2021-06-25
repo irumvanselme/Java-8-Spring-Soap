@@ -1,5 +1,5 @@
 
-package jaxb.classes.items;
+package jaxb.classes;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="code" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="status" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="price" type="{http://www.w3.org/2001/XMLSchema}float"/>
- *         &lt;element name="supplier" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="supplier" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -52,8 +52,8 @@ public class ItemDetails {
     protected String status;
     @XmlElement(namespace = "https://rca.ac.rw/anselme/soap-app")
     protected float price;
-    @XmlElement(namespace = "https://rca.ac.rw/anselme/soap-app", required = true)
-    protected String supplier;
+    @XmlElement(namespace = "https://rca.ac.rw/anselme/soap-app")
+    protected long supplier;
 
     /**
      * Gets the value of the id property.
@@ -162,24 +162,16 @@ public class ItemDetails {
     /**
      * Gets the value of the supplier property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
-    public String getSupplier() {
+    public long getSupplier() {
         return supplier;
     }
 
     /**
      * Sets the value of the supplier property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
-    public void setSupplier(String value) {
+    public void setSupplier(long value) {
         this.supplier = value;
     }
 

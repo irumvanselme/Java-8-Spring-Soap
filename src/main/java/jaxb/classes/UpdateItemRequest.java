@@ -1,5 +1,5 @@
 
-package jaxb.classes.items;
+package jaxb.classes;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="message" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="Item" type="{https://rca.ac.rw/anselme/soap-app}ItemDetails"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,36 +29,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "message"
+    "item"
 })
-@XmlRootElement(name = "DeleteItemResponse", namespace = "https://rca.ac.rw/anselme/soap-app")
-public class DeleteItemResponse {
+@XmlRootElement(name = "UpdateItemRequest", namespace = "https://rca.ac.rw/anselme/soap-app")
+public class UpdateItemRequest {
 
-    @XmlElement(namespace = "https://rca.ac.rw/anselme/soap-app", required = true)
-    protected String message;
+    @XmlElement(name = "Item", namespace = "https://rca.ac.rw/anselme/soap-app", required = true)
+    protected ItemDetails item;
 
     /**
-     * Gets the value of the message property.
+     * Gets the value of the item property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link ItemDetails }
      *     
      */
-    public String getMessage() {
-        return message;
+    public ItemDetails getItem() {
+        return item;
     }
 
     /**
-     * Sets the value of the message property.
+     * Sets the value of the item property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link ItemDetails }
      *     
      */
-    public void setMessage(String value) {
-        this.message = value;
+    public void setItem(ItemDetails value) {
+        this.item = value;
     }
 
 }

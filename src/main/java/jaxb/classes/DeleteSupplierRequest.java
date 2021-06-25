@@ -1,5 +1,5 @@
 
-package jaxb.classes.suppliers;
+package jaxb.classes;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -31,8 +31,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "id"
 })
-@XmlRootElement(name = "GetSupplierDetailsRequest", namespace = "https://rca.ac.rw/anselme/soap-app")
-public class GetSupplierDetailsRequest {
+@XmlRootElement(name = "DeleteSupplierRequest", namespace = "https://rca.ac.rw/anselme/soap-app")
+public class DeleteSupplierRequest {
 
     @XmlElement(namespace = "https://rca.ac.rw/anselme/soap-app")
     protected long id;
