@@ -5,87 +5,52 @@
         xmlns:tns="https://rca.ac.rw/anselme/soap-app"
         elementFormDefault="qualified">
 
-    <xs:complexType name="StudentDetails">
+    <xs:complexType name="ItemDetails">
         <xs:sequence>
             <xs:element name="id" type="xs:long"/>
-            <xs:element name="firstName" type="xs:string"/>
-            <xs:element name="lastName" type="xs:string"/>
-            <xs:element name="gender" type="xs:string"/>
-            <xs:element name="dateOfBirth" type="xs:string"/>
-            <xs:element name="resident" type="xs:string"/>
-            <xs:element name="parentsPhoneNumber" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="code" type="xs:string"/>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="price" type="xs:float"/>
+            <xs:element name="supplier" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 
     <!-- Requests -->
 
-    <!-- New student -->
-    <xs:element name="NewStudentRequest">
+    <!-- New course -->
+    <xs:element name="NewItemRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Student" type="tns:StudentDetails"/>
+                <xs:element name="Item" type="tns:ItemDetails"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="NewStudentResponse">
+    <xs:element name="NewItemResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Student" type="tns:StudentDetails"/>
+                <xs:element name="Item" type="tns:ItemDetails"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <!-- Get all students -->
-    <xs:element name="GetAllStudentsRequest">
+    <!-- Get all courses -->
+    <xs:element name="GetAllItemsRequest">
         <xs:complexType>
 
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="GetAllStudentsResponse">
+    <xs:element name="GetAllItemsResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Student" type="tns:StudentDetails" maxOccurs="unbounded"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-
-    <!--    Get a student by id -->
-    <xs:element name="GetStudentDetailsRequest">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="id" type="xs:long"/>
+                <xs:element name="Item" type="tns:ItemDetails" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="GetStudentDetailsResponse">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="Student" type="tns:StudentDetails"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-
-    <!--    Update Student -->
-    <xs:element name="UpdateStudentRequest">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="Student" type="tns:StudentDetails"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-
-    <xs:element name="UpdateStudentResponse">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="Student" type="tns:StudentDetails"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-
-    <!--    Delete Student -->
-    <xs:element name="DeleteStudentRequest">
+    <!--    Get a course by id -->
+    <xs:element name="GetItemDetailsRequest">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="id" type="xs:long"/>
@@ -93,7 +58,41 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="DeleteStudentResponse">
+    <xs:element name="GetItemDetailsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Item" type="tns:ItemDetails"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--    Update Item -->
+    <xs:element name="UpdateItemRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Item" type="tns:ItemDetails"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="UpdateItemResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Item" type="tns:ItemDetails"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--    Delete Item -->
+    <xs:element name="DeleteItemRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DeleteItemResponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="message" type="xs:string"/>

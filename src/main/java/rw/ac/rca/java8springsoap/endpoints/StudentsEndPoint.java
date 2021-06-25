@@ -1,13 +1,12 @@
 package rw.ac.rca.java8springsoap.endpoints;
 
-import jaxb.classes.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import rw.ac.rca.java8springsoap.repositories.IStudentRepository;
-import rw.ac.rca.java8springsoap.models.Student;
+import rw.ac.rca.java8springsoap.models.Supplier;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,9 +25,9 @@ public class StudentsEndPoint {
     public NewStudentResponse create(@RequestPayload NewStudentRequest dto) {
         StudentDetails __student = dto.getStudent();
 
-        Student _student = mapStudent(__student);
+        Supplier _student = mapStudent(__student);
 
-        Student student = studentRepository.save(_student);
+        Supplier student = studentRepository.save(_student);
 
         NewStudentResponse response = new NewStudentResponse();
 
@@ -43,11 +42,11 @@ public class StudentsEndPoint {
     @ResponsePayload
     public GetAllStudentsResponse findAll(@RequestPayload GetAllStudentsRequest request) {
 
-        List<Student> students = studentRepository.findAll();
+        List<Supplier> students = studentRepository.findAll();
 
         GetAllStudentsResponse response = new GetAllStudentsResponse();
 
-        for (Student student : students) {
+        for (Supplier student : students) {
             StudentDetails _student = mapStudent(student);
 
             response.getStudent().add(_student);
@@ -59,12 +58,12 @@ public class StudentsEndPoint {
     @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "GetStudentDetailsRequest")
     @ResponsePayload
     public GetStudentDetailsResponse findById(@RequestPayload GetStudentDetailsRequest request) {
-        Optional<Student> _student = studentRepository.findById(request.getId());
+        Optional<Supplier> _student = studentRepository.findById(request.getId());
 
         if (!_student.isPresent())
             return new GetStudentDetailsResponse();
 
-        Student student = _student.get();
+        Supplier student = _student.get();
 
         GetStudentDetailsResponse response = new GetStudentDetailsResponse();
 
@@ -89,10 +88,10 @@ public class StudentsEndPoint {
     public UpdateStudentResponse update(@RequestPayload UpdateStudentRequest request) {
         StudentDetails __student = request.getStudent();
 
-        Student _student = mapStudent(__student);
+        Supplier _student = mapStudent(__student);
         _student.setId(__student.getId());
 
-        Student student = studentRepository.save(_student);
+        Supplier student = studentRepository.save(_student);
 
         UpdateStudentResponse studentDTO = new UpdateStudentResponse();
 
@@ -103,7 +102,7 @@ public class StudentsEndPoint {
         return studentDTO;
     }
 
-    private StudentDetails mapStudent(Student student) {
+    private StudentDetails mapStudent(Supplier student) {
         StudentDetails _student = new StudentDetails();
         _student.setId(student.getId());
         _student.setFirstName(student.getFirstName());
@@ -116,7 +115,7 @@ public class StudentsEndPoint {
         return _student;
     }
 
-    private Student mapStudent(StudentDetails __student) {
-        return new Student(__student.getId(), __student.getFirstName(), __student.getLastName(), __student.getGender(), __student.getDateOfBirth(), __student.getResident(), __student.getParentsPhoneNumber());
+    private Supplier mapStudent(StudentDetails __student) {
+        return new Supplier(__student.getId(), __student.getFirstName(), __student.getLastName(), __student.getGender(), __student.getDateOfBirth(), __student.getResident(), __student.getParentsPhoneNumber());
     }
 }

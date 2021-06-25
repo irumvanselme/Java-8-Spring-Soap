@@ -22,37 +22,37 @@ public class WebServiceConfig {
         MessageDispatcherServlet messageDispatcherServlet = new MessageDispatcherServlet();
         messageDispatcherServlet.setApplicationContext(context);
         messageDispatcherServlet.setTransformWsdlLocations(true);
-        return new ServletRegistrationBean<>(messageDispatcherServlet, "/ws/*");
+        return new ServletRegistrationBean<>(messageDispatcherServlet, "/ws/anselme/*");
     }
 
     // /ws/anselme/students.wsdl
-    @Bean(name = "students")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema studentsSchema) {
+    @Bean(name = "items")
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema itemsSchema) {
         DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
-        definition.setPortTypeName("StudentsPort");
+        definition.setPortTypeName("ItemsPort");
         definition.setTargetNamespace("https://rca.ac.rw/anselme/soap-app");
         definition.setLocationUri("/ws");
-        definition.setSchema(studentsSchema);
+        definition.setSchema(itemsSchema);
         return definition;
     }
 
-    @Bean(name = "courses")
-    public WsdlDefinition coursesDefinition(XsdSchema coursesSchema){
+    @Bean(name = "suppliers")
+    public WsdlDefinition coursesDefinition(XsdSchema supplierSchema){
         DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
-        definition.setPortTypeName("CoursesPort");
+        definition.setPortTypeName("SuppliersPort");
         definition.setTargetNamespace("https://rca.ac.rw/anselme/soap-app");
         definition.setLocationUri("/ws");
-        definition.setSchema(coursesSchema);
+        definition.setSchema(supplierSchema);
         return definition;
     }
 
     @Bean
-    public XsdSchema studentsSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("students-details.xsd"));
+    public XsdSchema supplierSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("supplier-details.xsd"));
     }
 
     @Bean
-    public XsdSchema coursesSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("courses-details.xsd"));
+    public XsdSchema itemsSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("items-details.xsd"));
     }
 }

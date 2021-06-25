@@ -1,13 +1,12 @@
 package rw.ac.rca.java8springsoap.endpoints;
 
-import jaxb.classes.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import rw.ac.rca.java8springsoap.repositories.ICourseRepository;
-import rw.ac.rca.java8springsoap.models.Course;
+import rw.ac.rca.java8springsoap.models.Item;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,9 +25,9 @@ public class CoursesEndPoint {
     public NewCourseResponse create(@RequestPayload NewCourseRequest dto) {
         CourseDetails __student = dto.getCourse();
 
-        Course _student = mapCourse(__student);
+        Item _student = mapCourse(__student);
 
-        Course student = studentRepository.save(_student);
+        Item student = studentRepository.save(_student);
 
         NewCourseResponse response = new NewCourseResponse();
 
@@ -43,11 +42,11 @@ public class CoursesEndPoint {
     @ResponsePayload
     public GetAllCoursesResponse findAll(@RequestPayload GetAllCoursesRequest request) {
 
-        List<Course> students = studentRepository.findAll();
+        List<Item> students = studentRepository.findAll();
 
         GetAllCoursesResponse response = new GetAllCoursesResponse();
 
-        for (Course student : students) {
+        for (Item student : students) {
             CourseDetails _student = mapCourse(student);
 
             response.getCourse().add(_student);
@@ -59,12 +58,12 @@ public class CoursesEndPoint {
     @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "GetCourseDetailsRequest")
     @ResponsePayload
     public GetCourseDetailsResponse findById(@RequestPayload GetCourseDetailsRequest request) {
-        Optional<Course> _student = studentRepository.findById(request.getId());
+        Optional<Item> _student = studentRepository.findById(request.getId());
 
         if (!_student.isPresent())
             return new GetCourseDetailsResponse();
 
-        Course student = _student.get();
+        Item student = _student.get();
 
         GetCourseDetailsResponse response = new GetCourseDetailsResponse();
 
@@ -89,10 +88,10 @@ public class CoursesEndPoint {
     public UpdateCourseResponse update(@RequestPayload UpdateCourseRequest request) {
         CourseDetails __student = request.getCourse();
 
-        Course _student = mapCourse(__student);
+        Item _student = mapCourse(__student);
         _student.setId(__student.getId());
 
-        Course student = studentRepository.save(_student);
+        Item student = studentRepository.save(_student);
 
         UpdateCourseResponse studentDTO = new UpdateCourseResponse();
 
@@ -103,7 +102,7 @@ public class CoursesEndPoint {
         return studentDTO;
     }
 
-    private CourseDetails mapCourse(Course student) {
+    private CourseDetails mapCourse(Item student) {
         CourseDetails _student = new CourseDetails();
         _student.setId(student.getId());
         _student.setCode(student.getCode());
@@ -113,7 +112,7 @@ public class CoursesEndPoint {
         return _student;
     }
 
-    private Course mapCourse(CourseDetails __student) {
-        return new Course(__student.getId(), __student.getName(), __student.getCode(), __student.getMax());
+    private Item mapCourse(CourseDetails __student) {
+        return new Item(__student.getId(), __student.getName(), __student.getCode(), __student.getMax());
     }
 }
