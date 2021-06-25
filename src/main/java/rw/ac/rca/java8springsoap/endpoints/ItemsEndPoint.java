@@ -11,6 +11,7 @@ import rw.ac.rca.java8springsoap.models.enums.EItemStatus;
 import rw.ac.rca.java8springsoap.repositories.IItemRepository;
 import rw.ac.rca.java8springsoap.models.Item;
 import rw.ac.rca.java8springsoap.repositories.ISupplierRepository;
+import rw.ac.rca.java8springsoap.utils.MappingHandler;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,6 +45,7 @@ public class ItemsEndPoint {
         __item.setId(item.getId());
 
         response.setItem(__item);
+        response.setSupplier(MappingHandler.mapToSupplierDetails(supplier.get()));
 
         return response;
     }
@@ -80,6 +82,7 @@ public class ItemsEndPoint {
         ItemDetails __item = mapItem(item);
 
         response.setItem(__item);
+        response.setSupplier(MappingHandler.mapToSupplierDetails(_item.get().getSupplier()));
 
         return response;
     }
