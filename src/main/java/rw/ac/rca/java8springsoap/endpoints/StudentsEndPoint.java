@@ -1,6 +1,6 @@
 package rw.ac.rca.java8springsoap.endpoints;
 
-import jaxb.classes.*;
+import jaxb.classes.students.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -24,7 +24,7 @@ public class StudentsEndPoint {
     @PayloadRoot(namespace = "students.xsd", localPart = "NewStudentRequest")
     @ResponsePayload
     public NewStudentResponse create(@RequestPayload NewStudentRequest dto) {
-        jaxb.classes.Student __student = dto.getStudent();
+        StudentDetails __student = dto.getStudent();
 
         Student _student = mapStudent(__student);
 
@@ -48,7 +48,7 @@ public class StudentsEndPoint {
         GetAllStudentsResponse response = new GetAllStudentsResponse();
 
         for (Student student : students) {
-            jaxb.classes.Student _student = mapStudent(student);
+            StudentDetails _student = mapStudent(student);
 
             response.getStudent().add(_student);
         }
@@ -68,7 +68,7 @@ public class StudentsEndPoint {
 
         GetStudentDetailsResponse response = new GetStudentDetailsResponse();
 
-        jaxb.classes.Student __student = mapStudent(student);
+        StudentDetails __student = mapStudent(student);
 
         response.setStudent(__student);
 
@@ -87,7 +87,7 @@ public class StudentsEndPoint {
     @PayloadRoot(namespace = "students.xsd", localPart = "UpdateStudentRequest")
     @ResponsePayload
     public UpdateStudentResponse update(@RequestPayload UpdateStudentRequest request) {
-        jaxb.classes.Student __student = request.getStudent();
+        StudentDetails __student = request.getStudent();
 
         Student _student = mapStudent(__student);
         _student.setId(__student.getId());
@@ -103,8 +103,8 @@ public class StudentsEndPoint {
         return studentDTO;
     }
 
-    private jaxb.classes.Student mapStudent(Student student) {
-        jaxb.classes.Student _student = new jaxb.classes.Student();
+    private StudentDetails mapStudent(Student student) {
+        StudentDetails _student = new StudentDetails();
         _student.setId(student.getId());
         _student.setFirstName(student.getFirstName());
         _student.setLastName(student.getLastName());
@@ -116,7 +116,7 @@ public class StudentsEndPoint {
         return _student;
     }
 
-    private Student mapStudent(jaxb.classes.Student __student) {
+    private Student mapStudent(StudentDetails __student) {
         return new Student(__student.getId(), __student.getFirstName(), __student.getLastName(), __student.getGender(), __student.getDateOfBirth(), __student.getResident(), __student.getParentsPhoneNumber());
     }
 }
