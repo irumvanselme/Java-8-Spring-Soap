@@ -20,7 +20,7 @@
     <!-- Requests -->
 
     <!-- New student -->
-    <xs:element name="NewStudentDTORequest">
+    <xs:element name="NewStudentRequest">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="Student" type="tns:Student"/>
@@ -28,7 +28,7 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="NewStudentDTOResponse">
+    <xs:element name="NewStudentResponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="Student" type="tns:Student"/>

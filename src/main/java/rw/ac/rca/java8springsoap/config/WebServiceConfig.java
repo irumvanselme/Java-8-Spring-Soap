@@ -32,7 +32,7 @@ public class WebServiceConfig {
     @Bean(name = "students")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema studentsSchema) {
         DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
-        definition.setPortTypeName("StudentPort");
+        definition.setPortTypeName("StudentsPort");
         definition.setTargetNamespace("https://rca.ac.rw/anselme/soap-app");
         definition.setLocationUri("/ws/anselme");
         definition.setSchema(studentsSchema);

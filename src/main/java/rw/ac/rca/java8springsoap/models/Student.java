@@ -25,6 +25,16 @@ public class Student {
     public Student() {
     }
 
+    public Student(long id, String firstName, String lastName, String gender, String dateOfBirth, String resident, String parentsPhoneNumber) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.resident = resident;
+        this.parentsPhoneNumber = parentsPhoneNumber;
+    }
+
     public Student(String firstName, String lastName, String gender, String dateOfBirth, String resident, String parentsPhoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;

@@ -21,33 +21,33 @@ public class StudentsEndPoint {
         this.studentRepository = repository;
     }
 
-    @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "NewStudentDTORequest")
+    @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "NewStudentRequest")
     @ResponsePayload
-    public NewStudentDTOResponse create(@RequestPayload NewStudentDTORequest dto) {
+    public NewStudentResponse create(@RequestPayload NewStudentRequest dto) {
         jaxb.classes.Student __student = dto.getStudent();
 
-        Student _student = new Student(__student.getFirstName(), __student.getLastName(), __student.getGender(), __student.getDateOfBirth(), __student.getResident(), __student.getParentsPhoneNumber());
+        Student _student = mapStudent(__student);
 
         Student student = studentRepository.save(_student);
 
-        NewStudentDTOResponse studentDTO = new NewStudentDTOResponse();
+        NewStudentResponse response = new NewStudentResponse();
 
         __student.setId(student.getId());
 
-        studentDTO.setStudent(__student);
+        response.setStudent(__student);
 
-        return studentDTO;
+        return response;
     }
 
     @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "GetAllStudentsRequest")
     @ResponsePayload
-    public GetAllStudentsResponse findAll(@RequestPayload GetAllStudentsRequest request){
+    public GetAllStudentsResponse findAll(@RequestPayload GetAllStudentsRequest request) {
 
         List<Student> students = studentRepository.findAll();
 
         GetAllStudentsResponse response = new GetAllStudentsResponse();
 
-        for (Student student: students){
+        for (Student student : students) {
             jaxb.classes.Student _student = mapStudent(student);
 
             response.getStudent().add(_student);
@@ -58,10 +58,10 @@ public class StudentsEndPoint {
 
     @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "GetStudentDetailsRequest")
     @ResponsePayload
-    public GetStudentDetailsResponse findById(@RequestPayload GetStudentDetailsRequest request){
+    public GetStudentDetailsResponse findById(@RequestPayload GetStudentDetailsRequest request) {
         Optional<Student> _student = studentRepository.findById(request.getId());
 
-        if(!_student.isPresent())
+        if (!_student.isPresent())
             return new GetStudentDetailsResponse();
 
         Student student = _student.get();
@@ -70,14 +70,14 @@ public class StudentsEndPoint {
 
         jaxb.classes.Student __student = mapStudent(student);
 
-       response.setStudent(__student);
+        response.setStudent(__student);
 
-       return response;
+        return response;
     }
 
     @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "DeleteStudentRequest")
     @ResponsePayload
-    public DeleteStudentResponse delete(@RequestPayload DeleteStudentRequest request){
+    public DeleteStudentResponse delete(@RequestPayload DeleteStudentRequest request) {
         studentRepository.deleteById(request.getId());
         DeleteStudentResponse response = new DeleteStudentResponse();
         response.setMessage("Successfully deleted a message");
@@ -86,10 +86,10 @@ public class StudentsEndPoint {
 
     @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "UpdateStudentRequest")
     @ResponsePayload
-    public UpdateStudentResponse update(@RequestPayload UpdateStudentRequest request){
+    public UpdateStudentResponse update(@RequestPayload UpdateStudentRequest request) {
         jaxb.classes.Student __student = request.getStudent();
 
-        Student _student = new Student(__student.getFirstName(), __student.getLastName(), __student.getGender(), __student.getDateOfBirth(), __student.getResident(), __student.getParentsPhoneNumber());
+        Student _student = mapStudent(__student);
         _student.setId(__student.getId());
 
         Student student = studentRepository.save(_student);
@@ -103,7 +103,7 @@ public class StudentsEndPoint {
         return studentDTO;
     }
 
-    private jaxb.classes.Student mapStudent(Student student){
+    private jaxb.classes.Student mapStudent(Student student) {
         jaxb.classes.Student _student = new jaxb.classes.Student();
         _student.setId(student.getId());
         _student.setFirstName(student.getFirstName());
@@ -114,5 +114,9 @@ public class StudentsEndPoint {
         _student.setParentsPhoneNumber(student.getParentsPhoneNumber());
 
         return _student;
+    }
+
+    private Student mapStudent(jaxb.classes.Student __student) {
+        return new Student(__student.getId(), __student.getFirstName(), __student.getLastName(), __student.getGender(), __student.getDateOfBirth(), __student.getResident(), __student.getParentsPhoneNumber());
     }
 }
