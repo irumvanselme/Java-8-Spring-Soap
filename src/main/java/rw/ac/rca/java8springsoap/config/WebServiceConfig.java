@@ -26,7 +26,7 @@ public class WebServiceConfig {
     }
 
     // /ws/anselme/students.wsdl
-    @Bean(name = "items")
+    @Bean(name = "stock")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema itemsSchema) {
         DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
         definition.setPortTypeName("ItemsPort");
@@ -36,23 +36,8 @@ public class WebServiceConfig {
         return definition;
     }
 
-    @Bean(name = "suppliers")
-    public WsdlDefinition coursesDefinition(XsdSchema supplierSchema){
-        DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
-        definition.setPortTypeName("SuppliersPort");
-        definition.setTargetNamespace("https://rca.ac.rw/anselme/soap-app");
-        definition.setLocationUri("/ws");
-        definition.setSchema(supplierSchema);
-        return definition;
-    }
-
-    @Bean
-    public XsdSchema supplierSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("supplier-details.xsd"));
-    }
-
     @Bean
     public XsdSchema itemsSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("items-details.xsd"));
+        return new SimpleXsdSchema(new ClassPathResource("app.xsd"));
     }
 }
