@@ -1,6 +1,6 @@
 package rw.ac.rca.java8springsoap.endpoints;
 
-import jaxb.classes.courses.*;
+import jaxb.classes.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -21,7 +21,7 @@ public class CoursesEndPoint {
         this.studentRepository = repository;
     }
 
-    @PayloadRoot(namespace = "students.xsd", localPart = "NewCourseRequest")
+    @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "NewCourseRequest")
     @ResponsePayload
     public NewCourseResponse create(@RequestPayload NewCourseRequest dto) {
         CourseDetails __student = dto.getCourse();
@@ -39,7 +39,7 @@ public class CoursesEndPoint {
         return response;
     }
 
-    @PayloadRoot(namespace = "students.xsd", localPart = "GetAllCoursesRequest")
+    @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "GetAllCoursesRequest")
     @ResponsePayload
     public GetAllCoursesResponse findAll(@RequestPayload GetAllCoursesRequest request) {
 
@@ -56,7 +56,7 @@ public class CoursesEndPoint {
         return response;
     }
 
-    @PayloadRoot(namespace = "students.xsd", localPart = "GetCourseDetailsRequest")
+    @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "GetCourseDetailsRequest")
     @ResponsePayload
     public GetCourseDetailsResponse findById(@RequestPayload GetCourseDetailsRequest request) {
         Optional<Course> _student = studentRepository.findById(request.getId());
@@ -75,7 +75,7 @@ public class CoursesEndPoint {
         return response;
     }
 
-    @PayloadRoot(namespace = "students.xsd", localPart = "DeleteCourseRequest")
+    @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "DeleteCourseRequest")
     @ResponsePayload
     public DeleteCourseResponse delete(@RequestPayload DeleteCourseRequest request) {
         studentRepository.deleteById(request.getId());
@@ -84,7 +84,7 @@ public class CoursesEndPoint {
         return response;
     }
 
-    @PayloadRoot(namespace = "students.xsd", localPart = "UpdateCourseRequest")
+    @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "UpdateCourseRequest")
     @ResponsePayload
     public UpdateCourseResponse update(@RequestPayload UpdateCourseRequest request) {
         CourseDetails __student = request.getCourse();

@@ -1,6 +1,6 @@
 package rw.ac.rca.java8springsoap.endpoints;
 
-import jaxb.classes.students.*;
+import jaxb.classes.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -21,7 +21,7 @@ public class StudentsEndPoint {
         this.studentRepository = repository;
     }
 
-    @PayloadRoot(namespace = "students.xsd", localPart = "NewStudentRequest")
+    @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "NewStudentRequest")
     @ResponsePayload
     public NewStudentResponse create(@RequestPayload NewStudentRequest dto) {
         StudentDetails __student = dto.getStudent();
@@ -39,7 +39,7 @@ public class StudentsEndPoint {
         return response;
     }
 
-    @PayloadRoot(namespace = "students.xsd", localPart = "GetAllStudentsRequest")
+    @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "GetAllStudentsRequest")
     @ResponsePayload
     public GetAllStudentsResponse findAll(@RequestPayload GetAllStudentsRequest request) {
 
@@ -56,7 +56,7 @@ public class StudentsEndPoint {
         return response;
     }
 
-    @PayloadRoot(namespace = "students.xsd", localPart = "GetStudentDetailsRequest")
+    @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "GetStudentDetailsRequest")
     @ResponsePayload
     public GetStudentDetailsResponse findById(@RequestPayload GetStudentDetailsRequest request) {
         Optional<Student> _student = studentRepository.findById(request.getId());
@@ -75,7 +75,7 @@ public class StudentsEndPoint {
         return response;
     }
 
-    @PayloadRoot(namespace = "students.xsd", localPart = "DeleteStudentRequest")
+    @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "DeleteStudentRequest")
     @ResponsePayload
     public DeleteStudentResponse delete(@RequestPayload DeleteStudentRequest request) {
         studentRepository.deleteById(request.getId());
@@ -84,7 +84,7 @@ public class StudentsEndPoint {
         return response;
     }
 
-    @PayloadRoot(namespace = "students.xsd", localPart = "UpdateStudentRequest")
+    @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "UpdateStudentRequest")
     @ResponsePayload
     public UpdateStudentResponse update(@RequestPayload UpdateStudentRequest request) {
         StudentDetails __student = request.getStudent();

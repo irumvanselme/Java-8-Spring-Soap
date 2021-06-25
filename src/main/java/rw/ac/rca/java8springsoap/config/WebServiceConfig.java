@@ -15,27 +15,28 @@ import org.springframework.xml.xsd.XsdSchema;
 @EnableWs //Enable Spring Web Services
 @Configuration //Spring Configuration
 public class WebServiceConfig {
+
     @Bean
     public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext context) {
         MessageDispatcherServlet messageDispatcherServlet = new MessageDispatcherServlet();
         messageDispatcherServlet.setApplicationContext(context);
         messageDispatcherServlet.setTransformWsdlLocations(true);
-        return new ServletRegistrationBean<>(messageDispatcherServlet, "/ws/anselme/*");
+        return new ServletRegistrationBean<>(messageDispatcherServlet, "/ws/spring-boot/*");
     }
 
     // /ws/anselme/students.wsdl
-    @Bean(name = "students")
+    @Bean(name = "student-management")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema studentsSchema) {
         DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
         definition.setPortTypeName("StudentsPort");
         definition.setTargetNamespace("https://rca.ac.rw/anselme/soap-app");
-        definition.setLocationUri("/ws/anselme");
+        definition.setLocationUri("/ws/spring-boot");
         definition.setSchema(studentsSchema);
         return definition;
     }
 
     @Bean
     public XsdSchema studentsSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("xsd/students.xsd"));
+        return new SimpleXsdSchema(new ClassPathResource("app.xsd"));
     }
 }
