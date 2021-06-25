@@ -5,7 +5,7 @@
         xmlns:tns="https://rca.ac.rw/anselme/soap-app"
         elementFormDefault="qualified">
 
-    <xs:complexType name="Course">
+    <xs:complexType name="CourseDetails">
         <xs:sequence>
             <xs:element name="id" type="xs:long"/>
             <xs:element name="name" type="xs:string"/>
@@ -20,7 +20,7 @@
     <xs:element name="NewCourseRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Course" type="tns:Course"/>
+                <xs:element name="Course" type="tns:CourseDetails"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -28,7 +28,7 @@
     <xs:element name="NewCourseResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Course" type="tns:Course"/>
+                <xs:element name="Course" type="tns:CourseDetails"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -42,7 +42,7 @@
     <xs:element name="GetAllCoursesResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Course" type="tns:Course" maxOccurs="unbounded"/>
+                <xs:element name="Course" type="tns:CourseDetails" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -59,7 +59,7 @@
     <xs:element name="GetCourseDetailsResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Course" type="tns:Course"/>
+                <xs:element name="Course" type="tns:CourseDetails"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -68,7 +68,7 @@
     <xs:element name="UpdateCourseRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Course" type="tns:Course"/>
+                <xs:element name="Course" type="tns:CourseDetails"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -76,7 +76,7 @@
     <xs:element name="UpdateCourseResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Course" type="tns:Course"/>
+                <xs:element name="Course" type="tns:CourseDetails"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
