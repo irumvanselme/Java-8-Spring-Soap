@@ -21,7 +21,7 @@ public class StudentsEndPoint {
         this.studentRepository = repository;
     }
 
-    @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "NewStudentRequest")
+    @PayloadRoot(namespace = "students.xsd", localPart = "NewStudentRequest")
     @ResponsePayload
     public NewStudentResponse create(@RequestPayload NewStudentRequest dto) {
         jaxb.classes.Student __student = dto.getStudent();
@@ -39,7 +39,7 @@ public class StudentsEndPoint {
         return response;
     }
 
-    @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "GetAllStudentsRequest")
+    @PayloadRoot(namespace = "students.xsd", localPart = "GetAllStudentsRequest")
     @ResponsePayload
     public GetAllStudentsResponse findAll(@RequestPayload GetAllStudentsRequest request) {
 
@@ -56,7 +56,7 @@ public class StudentsEndPoint {
         return response;
     }
 
-    @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "GetStudentDetailsRequest")
+    @PayloadRoot(namespace = "students.xsd", localPart = "GetStudentDetailsRequest")
     @ResponsePayload
     public GetStudentDetailsResponse findById(@RequestPayload GetStudentDetailsRequest request) {
         Optional<Student> _student = studentRepository.findById(request.getId());
@@ -75,7 +75,7 @@ public class StudentsEndPoint {
         return response;
     }
 
-    @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "DeleteStudentRequest")
+    @PayloadRoot(namespace = "students.xsd", localPart = "DeleteStudentRequest")
     @ResponsePayload
     public DeleteStudentResponse delete(@RequestPayload DeleteStudentRequest request) {
         studentRepository.deleteById(request.getId());
@@ -84,7 +84,7 @@ public class StudentsEndPoint {
         return response;
     }
 
-    @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "UpdateStudentRequest")
+    @PayloadRoot(namespace = "students.xsd", localPart = "UpdateStudentRequest")
     @ResponsePayload
     public UpdateStudentResponse update(@RequestPayload UpdateStudentRequest request) {
         jaxb.classes.Student __student = request.getStudent();
