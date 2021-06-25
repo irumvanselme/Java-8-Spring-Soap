@@ -130,7 +130,7 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <!-- Get all courses -->
+    <!-- Get all  -->
     <xs:element name="GetAllItemsRequest">
         <xs:complexType>
 
