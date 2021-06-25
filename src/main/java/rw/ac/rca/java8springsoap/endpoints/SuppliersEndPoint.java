@@ -13,27 +13,27 @@ import java.util.Optional;
 
 @Endpoint
 public class SuppliersEndPoint {
-    private final ISupplierRepository studentRepository;
+    private final ISupplierRepository supplierRepository;
 
     @Autowired
     public SuppliersEndPoint(ISupplierRepository repository) {
-        this.studentRepository = repository;
+        this.supplierRepository = repository;
     }
 
     @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "NewSupplierRequest")
     @ResponsePayload
     public NewSupplierResponse create(@RequestPayload NewSupplierRequest dto) {
-        SupplierDetails __student = dto.getSupplier();
+        SupplierDetails __supplier = dto.getSupplier();
 
-        Supplier _student = mapSupplier(__student);
+        Supplier _supplier = mapSupplier(__supplier);
 
-        Supplier student = studentRepository.save(_student);
+        Supplier supplier = supplierRepository.save(_supplier);
 
         NewSupplierResponse response = new NewSupplierResponse();
 
-        __student.setId(student.getId());
+        __supplier.setId(supplier.getId());
 
-        response.setSupplier(__student);
+        response.setSupplier(__supplier);
 
         return response;
     }
@@ -42,14 +42,14 @@ public class SuppliersEndPoint {
     @ResponsePayload
     public GetAllSuppliersResponse findAll(@RequestPayload GetAllSuppliersRequest request) {
 
-        List<Supplier> students = studentRepository.findAll();
+        List<Supplier> suppliers = supplierRepository.findAll();
 
         GetAllSuppliersResponse response = new GetAllSuppliersResponse();
 
-        for (Supplier student : students) {
-            SupplierDetails _student = mapSupplier(student);
+        for (Supplier supplier : suppliers) {
+            SupplierDetails _supplier = mapSupplier(supplier);
 
-            response.getSupplier().add(_student);
+            response.getSupplier().add(_supplier);
         }
 
         return response;
@@ -58,18 +58,18 @@ public class SuppliersEndPoint {
     @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "GetSupplierDetailsRequest")
     @ResponsePayload
     public GetSupplierDetailsResponse findById(@RequestPayload GetSupplierDetailsRequest request) {
-        Optional<Supplier> _student = studentRepository.findById(request.getId());
+        Optional<Supplier> _supplier = supplierRepository.findById(request.getId());
 
-        if (!_student.isPresent())
+        if (!_supplier.isPresent())
             return new GetSupplierDetailsResponse();
 
-        Supplier student = _student.get();
+        Supplier supplier = _supplier.get();
 
         GetSupplierDetailsResponse response = new GetSupplierDetailsResponse();
 
-        SupplierDetails __student = mapSupplier(student);
+        SupplierDetails __supplier = mapSupplier(supplier);
 
-        response.setSupplier(__student);
+        response.setSupplier(__supplier);
 
         return response;
     }
@@ -77,7 +77,7 @@ public class SuppliersEndPoint {
     @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "DeleteSupplierRequest")
     @ResponsePayload
     public DeleteSupplierResponse delete(@RequestPayload DeleteSupplierRequest request) {
-        studentRepository.deleteById(request.getId());
+        supplierRepository.deleteById(request.getId());
         DeleteSupplierResponse response = new DeleteSupplierResponse();
         response.setMessage("Successfully deleted a message");
         return response;
@@ -86,32 +86,32 @@ public class SuppliersEndPoint {
     @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "UpdateSupplierRequest")
     @ResponsePayload
     public UpdateSupplierResponse update(@RequestPayload UpdateSupplierRequest request) {
-        SupplierDetails __student = request.getSupplier();
+        SupplierDetails __supplier = request.getSupplier();
 
-        Supplier _student = mapSupplier(__student);
-        _student.setId(__student.getId());
+        Supplier _supplier = mapSupplier(__supplier);
+        _supplier.setId(__supplier.getId());
 
-        Supplier student = studentRepository.save(_student);
+        Supplier supplier = supplierRepository.save(_supplier);
 
-        UpdateSupplierResponse studentDTO = new UpdateSupplierResponse();
+        UpdateSupplierResponse supplierDTO = new UpdateSupplierResponse();
 
-        __student.setId(student.getId());
+        __supplier.setId(supplier.getId());
 
-        studentDTO.setSupplier(__student);
+        supplierDTO.setSupplier(__supplier);
 
-        return studentDTO;
+        return supplierDTO;
     }
 
-    private SupplierDetails mapSupplier(Supplier student) {
-        SupplierDetails _student = new SupplierDetails();
-        _student.setId(student.getId());
-        _student.setNames(student.getNames());
-        _student.setEmail(student.getEmail());
-        _student.setMobile(student.getMobile());
-        return _student;
+    private SupplierDetails mapSupplier(Supplier supplier) {
+        SupplierDetails _supplier = new SupplierDetails();
+        _supplier.setId(supplier.getId());
+        _supplier.setNames(supplier.getNames());
+        _supplier.setEmail(supplier.getEmail());
+        _supplier.setMobile(supplier.getMobile());
+        return _supplier;
     }
 
-    private Supplier mapSupplier(SupplierDetails __student) {
-        return new Supplier(__student.getId(), __student.getNames(), __student.getEmail(), __student.getMobile());
+    private Supplier mapSupplier(SupplierDetails __supplier) {
+        return new Supplier(__supplier.getId(), __supplier.getNames(), __supplier.getEmail(), __supplier.getMobile());
     }
 }

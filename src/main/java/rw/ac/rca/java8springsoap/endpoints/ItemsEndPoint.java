@@ -6,35 +6,44 @@ import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
+import rw.ac.rca.java8springsoap.models.Supplier;
+import rw.ac.rca.java8springsoap.models.enums.EItemStatus;
 import rw.ac.rca.java8springsoap.repositories.IItemRepository;
 import rw.ac.rca.java8springsoap.models.Item;
+import rw.ac.rca.java8springsoap.repositories.ISupplierRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Endpoint
 public class ItemsEndPoint {
-    private final IItemRepository studentRepository;
+    private final IItemRepository itemRepository;
+    private final ISupplierRepository supplierRepository;
 
     @Autowired
-    public ItemsEndPoint(IItemRepository repository) {
-        this.studentRepository = repository;
+    public ItemsEndPoint(IItemRepository repository, ISupplierRepository supplierRepository) {
+        this.itemRepository = repository;
+        this.supplierRepository = supplierRepository;
     }
 
     @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "NewItemRequest")
     @ResponsePayload
     public NewItemResponse create(@RequestPayload NewItemRequest dto) {
-        ItemDetails __student = dto.getItem();
+        ItemDetails __item = dto.getItem();
 
-        Item _student = mapItem(__student);
+        Optional<Supplier> supplier = supplierRepository.findById(__item.getSupplier());
 
-        Item student = studentRepository.save(_student);
+        if (!supplier.isPresent())
+            return new NewItemResponse();
+
+        Item _item = mapItem(__item, supplier.get());
+        Item item = itemRepository.save(_item);
 
         NewItemResponse response = new NewItemResponse();
 
-        __student.setId(student.getId());
+        __item.setId(item.getId());
 
-        response.setItem(__student);
+        response.setItem(__item);
 
         return response;
     }
@@ -43,14 +52,14 @@ public class ItemsEndPoint {
     @ResponsePayload
     public GetAllItemsResponse findAll(@RequestPayload GetAllItemsRequest request) {
 
-        List<Item> students = studentRepository.findAll();
+        List<Item> items = itemRepository.findAll();
 
         GetAllItemsResponse response = new GetAllItemsResponse();
 
-        for (Item student : students) {
-            ItemDetails _student = mapItem(student);
+        for (Item item : items) {
+            ItemDetails _item = mapItem(item);
 
-            response.getItem().add(_student);
+            response.getItem().add(_item);
         }
 
         return response;
@@ -59,18 +68,18 @@ public class ItemsEndPoint {
     @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "GetItemDetailsRequest")
     @ResponsePayload
     public GetItemDetailsResponse findById(@RequestPayload GetItemDetailsRequest request) {
-        Optional<Item> _student = studentRepository.findById(request.getId());
+        Optional<Item> _item = itemRepository.findById(request.getId());
 
-        if (!_student.isPresent())
+        if (!_item.isPresent())
             return new GetItemDetailsResponse();
 
-        Item student = _student.get();
+        Item item = _item.get();
 
         GetItemDetailsResponse response = new GetItemDetailsResponse();
 
-        ItemDetails __student = mapItem(student);
+        ItemDetails __item = mapItem(item);
 
-        response.setItem(__student);
+        response.setItem(__item);
 
         return response;
     }
@@ -78,7 +87,7 @@ public class ItemsEndPoint {
     @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "DeleteItemRequest")
     @ResponsePayload
     public DeleteItemResponse delete(@RequestPayload DeleteItemRequest request) {
-        studentRepository.deleteById(request.getId());
+        itemRepository.deleteById(request.getId());
         DeleteItemResponse response = new DeleteItemResponse();
         response.setMessage("Successfully deleted a message");
         return response;
@@ -87,33 +96,43 @@ public class ItemsEndPoint {
     @PayloadRoot(namespace = "https://rca.ac.rw/anselme/soap-app", localPart = "UpdateItemRequest")
     @ResponsePayload
     public UpdateItemResponse update(@RequestPayload UpdateItemRequest request) {
-        ItemDetails __student = request.getItem();
+        ItemDetails __item = request.getItem();
 
-        Item _student = mapItem(__student);
-        _student.setId(__student.getId());
+        Optional<Supplier> supplier = supplierRepository.findById(__item.getSupplier());
 
-        Item student = studentRepository.save(_student);
+        if (!supplier.isPresent())
+            return new UpdateItemResponse();
 
-        UpdateItemResponse studentDTO = new UpdateItemResponse();
+        Item _item = mapItem(__item, supplier.get());
 
-        __student.setId(student.getId());
+        Item item = itemRepository.save(_item);
 
-        studentDTO.setItem(__student);
+        UpdateItemResponse itemDTO = new UpdateItemResponse();
 
-        return studentDTO;
+        __item.setId(item.getId());
+
+        itemDTO.setItem(__item);
+
+        return itemDTO;
     }
 
-    private ItemDetails mapItem(Item student) {
-        ItemDetails _student = new ItemDetails();
-        _student.setId(student.getId());
-        _student.setCode(student.getCode());
-        _student.setName(student.getName());
-        _student.setStatus(student.getStatus().toString());
+    private ItemDetails mapItem(Item item) {
+        ItemDetails _item = new ItemDetails();
+        _item.setId(item.getId());
+        _item.setCode(item.getCode());
+        _item.setName(item.getName());
+        _item.setStatus(item.getStatus().toString());
 
-        return _student;
+        return _item;
     }
 
-    private Item mapItem(ItemDetails __student) {
-        return new Item(__student.getId(), __student.getName(), __student.getCode(), __student.getStatus(), __student.getSupplier());
+    public Item mapItem(ItemDetails itemDetails, Supplier supplier) {
+        return new Item(
+                itemDetails.getId(),
+                itemDetails.getName(),
+                itemDetails.getCode(),
+                itemDetails.getPrice(),
+                EItemStatus.valueOf(itemDetails.getStatus()),
+                supplier);
     }
 }

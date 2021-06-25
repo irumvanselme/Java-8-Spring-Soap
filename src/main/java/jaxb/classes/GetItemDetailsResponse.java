@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="Item" type="{https://rca.ac.rw/anselme/soap-app}ItemDetails"/>
+ *         &lt;element name="Supplier" type="{https://rca.ac.rw/anselme/soap-app}SupplierDetails"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,13 +30,16 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "item"
+    "item",
+    "supplier"
 })
 @XmlRootElement(name = "GetItemDetailsResponse", namespace = "https://rca.ac.rw/anselme/soap-app")
 public class GetItemDetailsResponse {
 
     @XmlElement(name = "Item", namespace = "https://rca.ac.rw/anselme/soap-app", required = true)
     protected ItemDetails item;
+    @XmlElement(name = "Supplier", namespace = "https://rca.ac.rw/anselme/soap-app", required = true)
+    protected SupplierDetails supplier;
 
     /**
      * Gets the value of the item property.
@@ -59,6 +63,30 @@ public class GetItemDetailsResponse {
      */
     public void setItem(ItemDetails value) {
         this.item = value;
+    }
+
+    /**
+     * Gets the value of the supplier property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link SupplierDetails }
+     *     
+     */
+    public SupplierDetails getSupplier() {
+        return supplier;
+    }
+
+    /**
+     * Sets the value of the supplier property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link SupplierDetails }
+     *     
+     */
+    public void setSupplier(SupplierDetails value) {
+        this.supplier = value;
     }
 
 }
