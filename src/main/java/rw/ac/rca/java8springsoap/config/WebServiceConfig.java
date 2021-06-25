@@ -31,7 +31,7 @@ public class WebServiceConfig {
         DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
         definition.setPortTypeName("ItemsPort");
         definition.setTargetNamespace("https://rca.ac.rw/anselme/soap-app");
-        definition.setLocationUri("/ws");
+        definition.setLocationUri("/ws/anselme");
         definition.setSchema(itemsSchema);
         return definition;
     }
