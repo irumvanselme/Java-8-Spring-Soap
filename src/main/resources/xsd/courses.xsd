@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="https://rca.ac.rw/anselme/soap-app"
+        xmlns:tns="https://rca.ac.rw/anselme/soap-app"
+        elementFormDefault="qualified">
+
+    <xs:complexType name="Course">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="code" type="xs:string"/>
+            <xs:element name="max" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Requests -->
+
+    <!-- New course -->
+    <xs:element name="NewCourseRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Course" type="tns:Course"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="NewCourseResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Course" type="tns:Course"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- Get all courses -->
+    <xs:element name="GetAllCoursesRequest">
+        <xs:complexType>
+
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetAllCoursesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Course" type="tns:Course" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--    Get a course by id -->
+    <xs:element name="GetCourseDetailsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetCourseDetailsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Course" type="tns:Course"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--    Update Course -->
+    <xs:element name="UpdateCourseRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Course" type="tns:Course"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="UpdateCourseResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Course" type="tns:Course"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!--    Delete Course -->
+    <xs:element name="DeleteCourseRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DeleteCourseResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
