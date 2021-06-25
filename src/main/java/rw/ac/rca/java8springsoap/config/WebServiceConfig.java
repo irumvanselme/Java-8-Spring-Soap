@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.ws.config.annotation.EnableWs;
+import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
-import org.springframework.ws.wsdl.WsdlDefinition;
 import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
@@ -15,7 +15,7 @@ import org.springframework.xml.xsd.XsdSchema;
 
 @EnableWs //Enable Spring Web Services
 @Configuration //Spring Configuration
-public class WebServiceConfig {
+public class WebServiceConfig extends WsConfigurerAdapter {
 
     @Bean
     public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext context) {
@@ -33,6 +33,9 @@ public class WebServiceConfig {
         definition.setTargetNamespace("https://rca.ac.rw/anselme/soap-app");
         definition.setLocationUri("/ws/anselme");
         definition.setSchema(itemsSchema);
+
+        definition.setSchema(itemsSchema);
+
         return definition;
     }
 
