@@ -15,17 +15,12 @@ import org.springframework.xml.xsd.XsdSchema;
 @EnableWs //Enable Spring Web Services
 @Configuration //Spring Configuration
 public class WebServiceConfig {
-
-    // MessageDispatcherServlet
-    // ApplicationContext
-    // url -> /ws/*
-
     @Bean
     public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext context) {
         MessageDispatcherServlet messageDispatcherServlet = new MessageDispatcherServlet();
         messageDispatcherServlet.setApplicationContext(context);
         messageDispatcherServlet.setTransformWsdlLocations(true);
-        return new ServletRegistrationBean<>(messageDispatcherServlet, "/ws/anselme/*");
+        return new ServletRegistrationBean<MessageDispatcherServlet>(messageDispatcherServlet, "/ws/anselme/*");
     }
 
     // /ws/anselme/students.wsdl
@@ -40,8 +35,7 @@ public class WebServiceConfig {
     }
 
     @Bean
-    public XsdSchema coursesSchema() {
+    public XsdSchema studentsSchema() {
         return new SimpleXsdSchema(new ClassPathResource("app.xsd"));
     }
 }
-

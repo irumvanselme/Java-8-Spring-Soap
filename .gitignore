@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+/jaxb/classes
+/src/main/java/jaxb/classes
+/src/main/java/jaxb/classes/
